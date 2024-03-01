@@ -7,11 +7,8 @@ import java.util.Iterator;
 
 public class AnagrammeGen {
 	private static int taille_anagramme=0;
-	private static Scanner scanner= new Scanner(System.in);
 	
-	private static char[] lireMot() {
-		System.out.println("Entrez un mot :");
-		String mot= scanner.next();
+	private static char[] lireMot(String mot) {
 		taille_anagramme=mot.length();
 		char[] anagramme= new char[taille_anagramme];
 		
@@ -27,7 +24,7 @@ public class AnagrammeGen {
 		for (int i = 0; i < taille_anagramme; i++) {
 			car=anagramme[i];
 			j=i;
-			while((j>0) && car<anagramme[j-1]) {
+			while((j>0) && Character.toLowerCase(car)<Character.toLowerCase(anagramme[j-1])) {
 				anagramme[j]=anagramme[j-1];
 				j=j-1;
 			}
@@ -35,14 +32,9 @@ public class AnagrammeGen {
 		}
 	}
 	
-	public static String tri() {
-		char[] mot =lireMot();
+	public static String anagramme(String entree) {
+		char[] mot =lireMot(entree);
 		tri_Insertion(mot);
 		return Arrays.toString(mot);
-	}
-	
-	public static void main(String[] args) {
-		String mot=tri();
-		System.out.println("anagramme trie :\n" + mot);
 	}
 }
